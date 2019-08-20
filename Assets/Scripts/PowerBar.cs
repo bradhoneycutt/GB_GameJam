@@ -23,27 +23,13 @@ public class PowerBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
-        {
-            if (_startTime == null)
-            {
-                _startTime = Time.time;
-            }
-            else
-            {
-                _needle.transform.position = Vector3.Lerp(_startPoint, _endPoint, Ratio);
-                _startTime = null;
-                return;
-            }
-        }
         if (_startTime != null)
         {
             Ratio = (Time.time - _startTime ?? Time.time) / TravelTime;
             if (Ratio >= 1F)
             {
                 _startTime = null;
-                _needle.transform.position = _endPoint;
-                return;
+                Ratio = 1F;
             }
         }
         _needle.transform.position = Vector3.Lerp(_startPoint, _endPoint, Ratio);
@@ -52,5 +38,16 @@ public class PowerBar : MonoBehaviour
     public void Reset()
     {
         Ratio = 0f;
+    }
+
+    public void StartMoving()
+    {
+        _startTime = Time.time;
+    }
+
+    public void StopMoving()
+    {
+        _needle.transform.position = Vector3.Lerp(_startPoint, _endPoint, Ratio);
+        _startTime = null;
     }
 }
