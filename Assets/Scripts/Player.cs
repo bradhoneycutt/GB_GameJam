@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float MaxSpeed = 100f;
     public float DiscSpeed = 10f;
     public float rotationSpeed = 500f;
-
+    public Transform Crosshair; 
 
     private bool hasShot = false;
     private float Speed;
@@ -22,13 +22,17 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Disc = gameObject.GetComponent<Rigidbody2D>();
-        startScale = transform.localScale;
-        LastDistance = StartDistance;
+
     }
 
     private void Start()
     {
+        Disc = gameObject.GetComponent<Rigidbody2D>();
+        startScale = transform.localScale;
+        LastDistance = StartDistance;
+        Crosshair = player.transform.GetChild(2);
+
+
         //OldPosition = transform.position;
         //player.transform.position = Disc.position + new Vector2(2.0f, 2.0f);
     }
@@ -36,39 +40,30 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Vector3 cursorPos = player.transform.position;
-        var direction = (cursorPos - transform.position);
+        IsMoving();
         if (Input.GetButtonDown("Fire1"))
         {
-            {
-                hasShot = true;
-                Debug.Log("hasShot");
-            }
-            if (hasShot)
-            {
-                //player.SetActive(false);
+            Vector3 cursorPos = Crosshair.position;
+            var direction = (cursorPos - transform.position);
+            
 
-                Disc.AddForce(direction * (MaxSpeed * DiscSpeed));
-
-               
-
-                Speed = Disc.velocity.sqrMagnitude;
-                AngularV = Disc.velocity.sqrMagnitude; 
-                Debug.Log(Disc.velocity.magnitude);
-
-                //if (rigidbody.velocity.sqrMagnitude < .01  rigidbody.angularVelocity.sqrMagnitude < .01)
-                if (!(Disc.velocity.magnitude > 0.0f))
-                {
-                    Disc.velocity = new Vector3(0, 0, 0);
-                    hasShot = false;
+            Disc.AddForce(direction * MaxSpeed * DiscSpeed);
+            player.SetActive(false);
 
 
-                }
+            Speed = Disc.velocity.sqrMagnitude;
+            AngularV = Disc.velocity.sqrMagnitude; 
+            Debug.Log(Disc.velocity.magnitude);
 
 
+            hasShot = true;
 
-            }
         }
+
+
+
+        
+
 
     }
     void OnCollisionEnter2D(Collision2D col)
@@ -76,16 +71,14 @@ public class Player : MonoBehaviour
         //currentDirection = Vector3.zero;
         Disc.velocity = Vector3.zero;
     }
-    private bool IsMoving()
+    private void IsMoving()
     {
-        if(OldPosition != transform.position)
+        if (!(Disc.velocity.magnitude > 0.0f) && hasShot)
         {
-            OldPosition = transform.position;
-            return true;
-        }
-        else
-        {
-            return false;
+            Disc.velocity = new Vector3(0, 0, 0);
+            hasShot = false;
+            player.transform.position = Disc.position;
+            player.SetActive(true);
         }
     }
 
