@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject cursor;
+    public GameObject player;
     public float MaxSpeed = 100f;
     public float DiscSpeed = 10f;
     public float rotationSpeed = 500f;
@@ -13,18 +13,30 @@ public class Player : MonoBehaviour
     private bool hasShot = false;
     private float Speed;
     private float AngularV;
-    private Rigidbody2D Disc; 
+    private Rigidbody2D Disc;
+    private Vector3 startScale;
+    private float StartDistance;
+    private float LastDistance;
+
+    private Vector3 OldPosition; 
 
     private void Awake()
     {
         Disc = gameObject.GetComponent<Rigidbody2D>();
+        startScale = transform.localScale;
+        LastDistance = StartDistance;
     }
 
+    private void Start()
+    {
+        //OldPosition = transform.position;
+        //player.transform.position = Disc.position + new Vector2(2.0f, 2.0f);
+    }
 
 
     private void Update()
     {
-        Vector3 cursorPos = cursor.transform.position;
+        Vector3 cursorPos = player.transform.position;
         var direction = (cursorPos - transform.position);
         if (Input.GetButtonDown("Fire1"))
         {
@@ -34,62 +46,47 @@ public class Player : MonoBehaviour
             }
             if (hasShot)
             {
-                
+                //player.SetActive(false);
+
                 Disc.AddForce(direction * (MaxSpeed * DiscSpeed));
+
+               
 
                 Speed = Disc.velocity.sqrMagnitude;
                 AngularV = Disc.velocity.sqrMagnitude; 
-                Debug.Log(Speed);
+                Debug.Log(Disc.velocity.magnitude);
 
                 //if (rigidbody.velocity.sqrMagnitude < .01  rigidbody.angularVelocity.sqrMagnitude < .01)
-                if (Speed < .01 && AngularV < .01)
+                if (!(Disc.velocity.magnitude > 0.0f))
                 {
                     Disc.velocity = new Vector3(0, 0, 0);
                     hasShot = false;
+
+
                 }
+
+
+
             }
         }
 
-        //Vector3 direction = cursor.transform.position - transform.position;
-        //direction.Normalize(); //
-
-        //float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;  //returns a radian -90 so Y is 0 axis which in unity is X axis 
-
-        //Quaternion rot = Quaternion.Euler(0, 0, zAngle);
-
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, rotationSpeed * Time.deltaTime);
-
-        //Vector3 dir = cursor.transform.position - transform.position;
-        //dir = transform.InverseTransformDirection(dir);
-
-        //if (Input.GetButtonDown("Fire1"))
-        //{
-        //    hasShot = true;
-        //    Debug.Log("hasShot");
-        //}
-        //if (hasShot)
-        //{
-        //    Vector3 posDelta = transform.position;
-        //    Vector3 velocity = new Vector3(0, MaxSpeed * Time.deltaTime, 0);
-        //    //Quaternon has to come  first
-        //    posDelta += transform.rotation * velocity;
-        //    Disc.AddForce(transform.up * MaxSpeed);
-        //   // transform.position = Vector3.Lerp(transform.position, posDelta, Time.deltaTime * MaxSpeed); //posDelta;
-        //    //Disc.MovePosition(new Vector2(dir.x * MaxSpeed, dir.y * MaxSpeed));
-        //    Speed = Disc.velocity.magnitude;
-        //    Debug.Log(Speed);
-        //    if (Speed < 0.5)
-        //    {
-        //        Disc.velocity = new Vector3(0, 0, 0);
-        //        hasShot = false;
-        //    }
-
-        //}
     }
-
-    private void PointToCursor()
+    void OnCollisionEnter2D(Collision2D col)
     {
-        
+        //currentDirection = Vector3.zero;
+        Disc.velocity = Vector3.zero;
+    }
+    private bool IsMoving()
+    {
+        if(OldPosition != transform.position)
+        {
+            OldPosition = transform.position;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
