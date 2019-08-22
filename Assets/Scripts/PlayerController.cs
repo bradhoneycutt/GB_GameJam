@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         if(aim.magnitude > 0.0f)
         {
             aim.Normalize();
-            aim *= 1.5f;
+            aim *= 3f;
             crossHair.transform.localPosition = aim; 
         }
     }

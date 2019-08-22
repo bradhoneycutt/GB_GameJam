@@ -10,8 +10,11 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 500f;
     public Transform Crosshair;
     public GameObject gm;
-    public GameObject basket; 
+    public GameObject basket;
+    public float StabilityRating = 0.0f;
+     
 
+    private Vector3 cursorPos; 
     private bool hasShot = false;
     private float Speed;
     private float AngularV;
@@ -42,21 +45,41 @@ public class Player : MonoBehaviour
         ///todo
         ///Spawing player is buggy and player can get stuck at previous location or very near it
         IsMoving();
+
+
+    }
+
+    private void FixedUpdate()
+    {
         if (Input.GetButtonDown("Fire1") && !hasShot)
         {
-            Vector3 cursorPos = Crosshair.position;
-            var direction = (cursorPos - transform.position);
-            // transform.localScale = transform.localScale * 2; 
+            cursorPos = Crosshair.position;
+            
+            var direction = ((Vector2)cursorPos - Disc.position);
+            direction = direction.normalized;
+            Debug.Log(direction);
+            transform.localScale = transform.localScale * 2; 
             _gameMan.HoleStrokes++;
+            
+            Disc.AddForce(direction*(MaxSpeed * DiscSpeed));
 
-            Disc.AddForce(direction * MaxSpeed * DiscSpeed);
+            
+            
             hasShot = true;
             player.SetActive(false);
             player.transform.position = Disc.position;
 
         }
+       
+        if (hasShot)
+        {
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, startScale, Time.deltaTime);
+            Debug.Log(Disc.velocity.magnitude);
+        }
 
     }
+
     void OnCollisionEnter2D(Collision2D col)
     {
 
@@ -78,14 +101,15 @@ public class Player : MonoBehaviour
 
     private void IsMoving()
     {
-        if (!(Disc.velocity.magnitude > 0.0f) && hasShot)
+        if (!(Disc.velocity.magnitude > 0.01f) && hasShot)
         {
-            // transform.localScale = startScale;
+            transform.localScale = startScale;
             Disc.velocity = new Vector3(0, 0, 0);
             hasShot = false;
             player.transform.position = Disc.position;
             player.SetActive(true);
         }
+
     }
 
 }
