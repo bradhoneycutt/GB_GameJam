@@ -9,7 +9,7 @@ public class PowerBar : MonoBehaviour
     private SpriteRenderer _needle;
     private Vector3 _startPoint;
     private Vector3 _endPoint;
-    private float? _startTime;
+    private PowerBarStatus _powerBarStatus = PowerBarStatus.Stopped;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +23,26 @@ public class PowerBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_startTime != null)
+        switch (_powerBarStatus)
         {
-            Ratio = (Time.time - _startTime ?? Time.time) / TravelTime;
-            if (Ratio >= 1F)
-            {
-                _startTime = null;
-                Ratio = 1F;
-            }
+            case PowerBarStatus.Right:
+                Ratio += Time.deltaTime / TravelTime;
+                break;
+            case PowerBarStatus.Left:
+                Ratio -= Time.deltaTime / TravelTime;
+                break;
+            case PowerBarStatus.Stopped:
+                return;
+        }
+        if (Ratio > 1F)
+        {
+            Ratio = 1F;
+            _powerBarStatus = PowerBarStatus.Left;
+        }
+        if (Ratio < 0F)
+        {
+            Ratio = 0F;
+            _powerBarStatus = PowerBarStatus.Right;
         }
         _needle.transform.position = Vector3.Lerp(_startPoint, _endPoint, Ratio);
     }
@@ -38,16 +50,23 @@ public class PowerBar : MonoBehaviour
     public void Reset()
     {
         Ratio = 0f;
+        _powerBarStatus = PowerBarStatus.Stopped;
     }
 
     public void StartMoving()
     {
-        _startTime = Time.time;
+        _powerBarStatus = PowerBarStatus.Right;
     }
 
     public void StopMoving()
     {
-        _needle.transform.position = Vector3.Lerp(_startPoint, _endPoint, Ratio);
-        _startTime = null;
+        _powerBarStatus = PowerBarStatus.Stopped;
     }
+}
+
+public enum PowerBarStatus
+{
+    Left,
+    Stopped,
+    Right
 }
