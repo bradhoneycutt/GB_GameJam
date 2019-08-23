@@ -8,13 +8,15 @@ public class GameMan : MonoBehaviour
 {
     public int HoleStrokes;
     public int HolePar;
-    public int HoleNumber; 
+    public int HoleNumber;
+    public Text ObText; 
     enum ScoreString { Ace=1, Birdie, Par, Bogey, Double_Bogey, Triple_Bogey, Good_Try};
     public Text scoreText;
     public Text parText;
     public Text scoreHoleText; 
     private string HoleScore = string.Empty;
-    private DataManager _dataMan; 
+    private DataManager _dataMan;
+    private string ObString = ""; 
 
 
     // Start is called before the first frame update
@@ -32,7 +34,15 @@ public class GameMan : MonoBehaviour
     {
         scoreText.text = "Stroke: "+ HoleStrokes.ToString();
         parText.text = "Par: "+ HolePar.ToString();
-        scoreHoleText.text = HoleScore; 
+        scoreHoleText.text = HoleScore;
+        ObText.text = ObString; 
+    }
+
+    public void Ob()
+    {
+        Debug.Log("OB");
+       
+        StartCoroutine(ObStroke());
     }
 
     public void ScoreHole()
@@ -54,8 +64,16 @@ public class GameMan : MonoBehaviour
         _dataMan.StrokesToPar[HoleNumber - 1] = HolePar; 
 
         HoleScore = ScoreStatus.ToString().Replace('_',' ') + " "+ decorator + (HoleStrokes - HolePar).ToString();
-        _dataMan.nextHole += HoleNumber;
+        _dataMan.nextHole = HoleNumber + 1;
         StartCoroutine(PauseCoroutine());
+    }
+
+    public IEnumerator ObStroke()
+    {
+        ObString = "OB";
+        yield return new WaitForSeconds(3f);
+        ObString = "";
+        Debug.Log("Coroutine Done");
     }
 
     IEnumerator PauseCoroutine()

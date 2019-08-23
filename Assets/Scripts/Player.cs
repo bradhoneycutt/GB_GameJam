@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public Transform Crosshair;
     public GameObject gm;
     public float StabilityRating = 0.0f;
-     
+    public GameObject DropZone;  
 
     private Vector3 cursorPos; 
     private bool hasShot = false;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private Vector3 startScale;
     private GameMan _gameMan;
     private Vector3 OldPosition;
-
+    private bool IsWet = false; 
 
     private void Awake()
     {
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
             
             var direction = ((Vector2)cursorPos - Disc.position);
             direction = direction.normalized;
-            Debug.Log(direction);
+
            // transform.localScale = transform.localScale * 2; 
             _gameMan.HoleStrokes++;
             
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         {
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
             transform.localScale = Vector3.Lerp(startScale, transform.localScale * 2f, Time.deltaTime* Time.deltaTime);
-            Debug.Log(Disc.velocity.magnitude);
+
         }
 
     }
@@ -96,6 +96,28 @@ public class Player : MonoBehaviour
             _gameMan.ScoreHole(); 
 
         }
+
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Water")
+        {
+            Debug.Log("In Water");
+            IsWet = true;
+
+        }
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Water")
+        {
+            Debug.Log("Exit Water");
+            IsWet = false;
+        }
     }
 
     private void IsMoving()
@@ -105,10 +127,37 @@ public class Player : MonoBehaviour
             transform.localScale = startScale;
             Disc.velocity = new Vector3(0, 0, 0);
             hasShot = false;
+
+            if (IsWet)
+            {
+                gameObject.SetActive(false);
+                player.SetActive(false);
+                Debug.Log("Water");
+
+                _gameMan.HoleStrokes += 2;
+                _gameMan.Ob();
+              
+
+
+                transform.position = DropZone.transform.position;
+                player.transform.position = DropZone.transform.position;
+                gameObject.SetActive(true);
+                
+
+            }
+
+
             player.transform.position = Disc.position;
             player.SetActive(true);
+
+
         }
 
+
+
     }
+
+
+
 
 }

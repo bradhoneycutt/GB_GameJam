@@ -37,7 +37,7 @@ public class ScoreBoard : MonoBehaviour
 
         var hole2 = _dataMan.Strokes[1] - _dataMan.StrokesToPar[1];
         decorator = (_dataMan.Strokes[1] - _dataMan.StrokesToPar[1]) > 0 ? "+" : "";
-        Hole3Score.text = decorator + hole2.ToString();
+        Hole2Score.text = decorator + hole2.ToString();
 
         var hole3 = _dataMan.Strokes[2] - _dataMan.StrokesToPar[2];
         decorator = (_dataMan.Strokes[2] - _dataMan.StrokesToPar[2]) > 0 ? "+" : "";

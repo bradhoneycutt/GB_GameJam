@@ -384,6 +384,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8337119890265269126, guid: d2e30594f67193c4087a66dd86971937,
+        type: 3}
+      propertyPath: Strokes.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337119890265269126, guid: d2e30594f67193c4087a66dd86971937,
+        type: 3}
+      propertyPath: Strokes.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337119890265269126, guid: d2e30594f67193c4087a66dd86971937,
+        type: 3}
+      propertyPath: Strokes.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337119890265269126, guid: d2e30594f67193c4087a66dd86971937,
+        type: 3}
+      propertyPath: StrokesToPar.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337119890265269126, guid: d2e30594f67193c4087a66dd86971937,
+        type: 3}
+      propertyPath: StrokesToPar.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337119890265269126, guid: d2e30594f67193c4087a66dd86971937,
+        type: 3}
+      propertyPath: StrokesToPar.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2e30594f67193c4087a66dd86971937, type: 3}
 --- !u!1 &522484364
@@ -2242,7 +2272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -39.2, y: -26.1}
+  m_AnchoredPosition: {x: -39.2, y: -20}
   m_SizeDelta: {x: 32, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628685903
@@ -2267,18 +2297,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8095ba7299c505c4099e82d88d47a24a, type: 3}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 0
 --- !u!222 &628685904
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2321,7 +2351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.6, y: -26.1}
+  m_AnchoredPosition: {x: 6.6, y: -20}
   m_SizeDelta: {x: 32, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668366916
@@ -2346,18 +2376,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8095ba7299c505c4099e82d88d47a24a, type: 3}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: +4
 --- !u!222 &668366917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2466,7 +2496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 43, y: -26.1}
+  m_AnchoredPosition: {x: 46.5, y: -20}
   m_SizeDelta: {x: 31.4, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036956232
@@ -2491,15 +2521,15 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8095ba7299c505c4099e82d88d47a24a, type: 3}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: -2
