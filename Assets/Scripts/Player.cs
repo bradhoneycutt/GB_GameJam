@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 500f;
     public Transform Crosshair;
     public GameObject gm;
-    public GameObject basket;
     public float StabilityRating = 0.0f;
      
 
@@ -22,6 +21,7 @@ public class Player : MonoBehaviour
     private Vector3 startScale;
     private GameMan _gameMan;
     private Vector3 OldPosition;
+
 
     private void Awake()
     {
@@ -54,11 +54,12 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && !hasShot)
         {
             cursorPos = Crosshair.position;
+
             
             var direction = ((Vector2)cursorPos - Disc.position);
             direction = direction.normalized;
             Debug.Log(direction);
-            transform.localScale = transform.localScale * 2; 
+           // transform.localScale = transform.localScale * 2; 
             _gameMan.HoleStrokes++;
             
             Disc.AddForce(direction*(MaxSpeed * DiscSpeed));
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
         if (hasShot)
         {
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-            transform.localScale = Vector3.Lerp(transform.localScale, startScale, Time.deltaTime);
+            transform.localScale = Vector3.Lerp(startScale, transform.localScale * 2f, Time.deltaTime* Time.deltaTime);
             Debug.Log(Disc.velocity.magnitude);
         }
 
@@ -82,8 +83,6 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-
-        //currentDirection = Vector3.zero;
         Disc.velocity = Vector3.zero;
     }
 
