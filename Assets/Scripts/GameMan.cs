@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameMan : MonoBehaviour
@@ -52,8 +53,17 @@ public class GameMan : MonoBehaviour
         _dataMan.Strokes[HoleNumber-1] = HoleStrokes;
         _dataMan.StrokesToPar[HoleNumber - 1] = HolePar; 
 
-        HoleScore = ScoreStatus.ToString().Replace('_',' ') + " "+ decorator + (HoleStrokes - HolePar).ToString(); 
+        HoleScore = ScoreStatus.ToString().Replace('_',' ') + " "+ decorator + (HoleStrokes - HolePar).ToString();
+        _dataMan.nextHole += HoleNumber;
+        StartCoroutine(PauseCoroutine());
     }
+
+    IEnumerator PauseCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("ScoreScreen");
+    }
+
 
 }
 

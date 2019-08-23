@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
     /// </summary>
     public int[] Strokes = new int[3];
     public int[] StrokesToPar = new int[3];
-
+    public int nextHole; 
     // Start is called before the first frame update
     void Awake()
     {
