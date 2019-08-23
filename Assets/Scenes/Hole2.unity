@@ -6033,6 +6033,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6125,6 +6126,18 @@ RectTransform:
   m_AnchoredPosition: {x: 4.5, y: -8.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65810ca92972bbf4eb0c3db7f6b26c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &733234500
 GameObject:
   m_ObjectHideFlags: 0
@@ -18248,6 +18261,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreData
       objectReference: {fileID: 0}
+    - target: {fileID: 8823955056303934351, guid: af6a7415857588e4dbaa20540e5a36fb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823955056303934351, guid: af6a7415857588e4dbaa20540e5a36fb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823955056858808420, guid: af6a7415857588e4dbaa20540e5a36fb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823955056858808420, guid: af6a7415857588e4dbaa20540e5a36fb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823955056568049467, guid: af6a7415857588e4dbaa20540e5a36fb,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823955056568049467, guid: af6a7415857588e4dbaa20540e5a36fb,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8823955056609210116, guid: af6a7415857588e4dbaa20540e5a36fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18363,16 +18406,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 54
       objectReference: {fileID: 0}
-    - target: {fileID: 8823955056303934351, guid: af6a7415857588e4dbaa20540e5a36fb,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8823955056303934351, guid: af6a7415857588e4dbaa20540e5a36fb,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8823955056568049466, guid: af6a7415857588e4dbaa20540e5a36fb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -18383,30 +18416,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 45
       objectReference: {fileID: 0}
-    - target: {fileID: 8823955056568049467, guid: af6a7415857588e4dbaa20540e5a36fb,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8823955056568049467, guid: af6a7415857588e4dbaa20540e5a36fb,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8823955056858808411, guid: af6a7415857588e4dbaa20540e5a36fb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 154
-      objectReference: {fileID: 0}
-    - target: {fileID: 8823955056858808420, guid: af6a7415857588e4dbaa20540e5a36fb,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 8823955056858808420, guid: af6a7415857588e4dbaa20540e5a36fb,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af6a7415857588e4dbaa20540e5a36fb, type: 3}
