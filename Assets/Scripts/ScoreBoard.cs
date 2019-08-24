@@ -48,7 +48,15 @@ public class ScoreBoard : MonoBehaviour
     IEnumerator PauseCoroutine()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("Hole" + _dataMan.nextHole);
+
+        if (_dataMan.nextHole == 4)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        else
+        {
+            SceneManager.LoadScene("Hole" + _dataMan.nextHole);
+        }
     }
 
 }
