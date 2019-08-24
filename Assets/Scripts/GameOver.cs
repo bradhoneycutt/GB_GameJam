@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    private DataManager _dataMan;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _dataMan = GameObject.Find("DataManager").GetComponent<DataManager>();
     }
 
     // Update is called once per frame
@@ -16,6 +17,11 @@ public class GameOver : MonoBehaviour
     {
         if (Input.GetButton("Fire2"))
         {
+
+            _dataMan.Strokes[0] = 0;
+            _dataMan.Strokes[1] = 0;
+            _dataMan.Strokes[2] = 0;
+
             SceneManager.LoadScene("Hole1");
         }
     }
