@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
                 player.SetActive(false);
                 Debug.Log("Water");
 
-                _gameMan.HoleStrokes += 2;
+                _gameMan.HoleStrokes += 1;
                 _gameMan.Ob();
               
 
