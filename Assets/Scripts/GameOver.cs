@@ -22,6 +22,10 @@ public class GameOver : MonoBehaviour
             _dataMan.Strokes[1] = 0;
             _dataMan.Strokes[2] = 0;
 
+            _dataMan.StrokesToPar[0] = 0;
+            _dataMan.StrokesToPar[1] = 0;
+            _dataMan.StrokesToPar[2] = 0;
+
             SceneManager.LoadScene("Hole1");
         }
     }
