@@ -38,6 +38,5 @@ public class PowerMeter : MonoBehaviour
     void DrawBar()
     {
         Bar.transform.localScale = new Vector3(20, Power, 1);
-        Bar.transform.localPosition = new Vector3(0, Power / 2, 0);
     }
 }

@@ -15081,6 +15081,16 @@ PrefabInstance:
       propertyPath: CrossHairSweepSpeed
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 4525963349963151804, guid: d20a852af461b2140b1e93002ad715c3,
+        type: 3}
+      propertyPath: Basket
+      value: 
+      objectReference: {fileID: 242782642}
+    - target: {fileID: 4525963349963151804, guid: d20a852af461b2140b1e93002ad715c3,
+        type: 3}
+      propertyPath: Disc
+      value: 
+      objectReference: {fileID: 1024107401}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d20a852af461b2140b1e93002ad715c3, type: 3}
 --- !u!1001 &5008925449696423444
