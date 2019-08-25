@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameObject CrossHair;
     public GameObject Basket;
     public GameObject Disc;
-    private float CrossHairSweepSpeed = 45;
+    public float CrossHairSweepSpeed;
 
     // Start is called before the first frame update
     void Start()

@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     private Vector3 startScale;
     private GameMan _gameMan;
     private Vector3 OldPosition;
-    private bool IsWet = false; 
-
+    private bool IsWet = false;
+    private PowerMeter _powerMeter;
     private void Awake()
     {
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         startScale = transform.localScale;
         Crosshair = player.transform.GetChild(2);
         _gameMan = gm.GetComponent<GameMan>();
-
+        _powerMeter = GameObject.Find("PowerMeter").GetComponent<PowerMeter>();
         //OldPosition = transform.position;
         //player.transform.position = Disc.position + new Vector2(2.0f, 2.0f);
     }
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
            // transform.localScale = transform.localScale * 2; 
             _gameMan.HoleStrokes++;
             
-            Disc.AddForce(direction*(MaxSpeed * DiscSpeed));
+            Disc.AddForce(direction*(MaxSpeed * DiscSpeed * (_powerMeter.Power / 100)));
 
             
             
