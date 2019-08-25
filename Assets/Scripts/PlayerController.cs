@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject CrossHair; 
+    public GameObject CrossHair;
+    public GameObject Basket;
+    public GameObject Disc;
+    private float CrossHairSweepSpeed = 45;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitCrossHair();
+    }
+
+    public void InitCrossHair()
+    {
+        var toBasket = Basket.transform.position - Disc.transform.position;
+        toBasket.Normalize();
+        toBasket *= 3F;
+        CrossHair.transform.localPosition = toBasket;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveCrossHair();
-    }
-
-    private void MoveCrossHair()
-    {
-
-        Vector3 aim = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-
-       
-
-
-        if(aim.magnitude > 0.0f)
+        if(Input.GetKey(KeyCode.LeftArrow))
         {
-            aim.Normalize();
-            aim *= 3f;
-                CrossHair.transform.localPosition = aim; 
+            CrossHair.transform.RotateAround(Disc.transform.localPosition, Vector3.forward, CrossHairSweepSpeed * Time.deltaTime);
+            CrossHair.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+        }
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            CrossHair.transform.RotateAround(Disc.transform.localPosition, Vector3.forward, -CrossHairSweepSpeed * Time.deltaTime);
+            CrossHair.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
         }
     }
 }

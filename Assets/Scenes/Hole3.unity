@@ -4158,6 +4158,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &242782642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7391567423629073060, guid: 821f3295bdf3f794488f2c2f16ede6b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7391567423785416345}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -15184,6 +15190,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482701144786633961, guid: d20a852af461b2140b1e93002ad715c3,
+        type: 3}
+      propertyPath: Basket
+      value: 
+      objectReference: {fileID: 242782642}
+    - target: {fileID: 1482701144786633961, guid: d20a852af461b2140b1e93002ad715c3,
+        type: 3}
+      propertyPath: Disc
+      value: 
+      objectReference: {fileID: 1024107401}
+    - target: {fileID: 1482701144786633961, guid: d20a852af461b2140b1e93002ad715c3,
+        type: 3}
+      propertyPath: CrossHairSweepSpeed
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d20a852af461b2140b1e93002ad715c3, type: 3}
