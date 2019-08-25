@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrossHair : MonoBehaviour
 {
-    public GameObject CrossHair;
+    public GameObject CrossHairObject;
     public GameObject Basket;
     public GameObject Disc;
     public float CrossHairSweepSpeed;
@@ -20,7 +20,7 @@ public class CrossHair : MonoBehaviour
         var toBasket = Basket.transform.position - Disc.transform.position;
         toBasket.Normalize();
         toBasket *= 3F;
-        CrossHair.transform.localPosition = toBasket;
+        CrossHairObject.transform.localPosition = toBasket;
     }
 
     // Update is called once per frame
@@ -28,13 +28,13 @@ public class CrossHair : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            CrossHair.transform.RotateAround(Disc.transform.localPosition, Vector3.forward, CrossHairSweepSpeed * Time.deltaTime);
-            CrossHair.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+            CrossHairObject.transform.RotateAround(Disc.transform.localPosition, Vector3.forward, CrossHairSweepSpeed * Time.deltaTime);
+            CrossHairObject.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
         }
         if(Input.GetKey(KeyCode.RightArrow))
         {
-            CrossHair.transform.RotateAround(Disc.transform.localPosition, Vector3.forward, -CrossHairSweepSpeed * Time.deltaTime);
-            CrossHair.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+            CrossHairObject.transform.RotateAround(Disc.transform.localPosition, Vector3.forward, -CrossHairSweepSpeed * Time.deltaTime);
+            CrossHairObject.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
         }
     }
 }
